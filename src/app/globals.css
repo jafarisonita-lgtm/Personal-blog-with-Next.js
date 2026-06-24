@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+width:100%;
+min-height:100%;
+font-size: 14px;
+font-family: Roboto;
+}
+
+.nav-bg{
+  background: #F8FAFC
+}
+
+.hero-section{
+  background-image: url('../assets/img/Background.png');
+  background-repeat: no-repeat;
+  background-position: left right;
+  background-size: cover;
+  height:400px;
+  width:100%;
+  display: flex;
+  align-items: center;
+  z-index:10;
+  
+}
+
+.hero-title{
+  color: #42307D;
+}
+.hero-subtitle-text{
+  color:#8165CE;
+}
+
+.text-color{
+  color:#6941C6
+}
+
+.blogs{
+  min-height: 1000px;
+  margin-bottom: 100px;
+}
+
+.footer{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
