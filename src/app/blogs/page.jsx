@@ -3,8 +3,23 @@ import Container from "../components/Container";
 import ArticlePost from "../components/ArticlePost";
 import Link from "next/link";
 
+export async function getPosts() {
+  const res = await fetch("http://localhost:3000/api/posts", {
+    cache: "no-store",
+  });
 
-function Blogs() {
+
+  return  res.json();
+}
+
+async function Blogs() {
+
+  let posts = await getPosts();
+
+
+  console.log(posts)
+
+
   return (
     <section className="py-10">
       <Container>
@@ -14,12 +29,11 @@ function Blogs() {
           </h2>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <ArticlePost />
-            <ArticlePost />
-            <ArticlePost />
-            <ArticlePost />
-            <ArticlePost />
-            <ArticlePost />
+            {posts.map((post) => (
+              <ArticlePost key={post.id} post={post} />
+            ))}
+
+      
           </div>
 
           <div className="mt-12 flex justify-center text-color ">
@@ -41,7 +55,6 @@ function Blogs() {
                   d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3"
                 />
               </svg>
-
               Load More
             </Link>
           </div>
