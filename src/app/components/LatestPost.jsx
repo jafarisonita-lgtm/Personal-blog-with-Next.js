@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "./Container";
 import ArticlePost from "./ArticlePost";
+import Link from "next/link";
 
 async function getPosts() {
   const res = await fetch("http://localhost:3000/api/posts", {
@@ -27,7 +28,9 @@ async function LatestPost() {
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {posts.slice(0, 6).map((post) => (
-              <ArticlePost key={post.id} post={post} />
+              <Link href={`/blogs/${post.id}`} key={post.id}>
+                <ArticlePost post={post} />
+              </Link>
             ))}
           </div>
         </div>

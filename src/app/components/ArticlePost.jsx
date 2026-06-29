@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import blogsImages from "../../assets/img/1.png";
-import AvatorImage from "../../assets/img/A1.png"
+
 
 async function ArticlePost({post}) {
 

@@ -17,7 +17,7 @@ async function Blogs() {
   let posts = await getPosts();
 
 
-  console.log(posts)
+  // console.log(params)
 
 
   return (
@@ -30,10 +30,10 @@ async function Blogs() {
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
-              <ArticlePost key={post.id} post={post} />
+              <Link href={`/blogs/${post.id}`} key={post.id}>
+                <ArticlePost  post={post} />
+              </Link>
             ))}
-
-      
           </div>
 
           <div className="mt-12 flex justify-center text-color ">
