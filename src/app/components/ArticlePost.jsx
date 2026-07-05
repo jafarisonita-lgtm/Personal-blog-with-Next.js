@@ -18,7 +18,7 @@ console.log(post);
 
       <div className="p-5">
         <span className="text-sm text-color">
-          {post.job}
+          {post.category}
           
         </span>
 
