@@ -19,7 +19,7 @@ async function Blogs({ searchParams }) {
   // گرفتن مقالات
   const posts = await getPosts();
 
-  // Next.js 15
+  
   const params = await searchParams;
   const search = (params?.search || "").toLowerCase().trim();
 

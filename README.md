@@ -14,7 +14,7 @@ Created to practice frontend development and showcase my skills.
 - SEO Friendly
 - Hero Section
 - Pricing Section
-- MockData
+- MockData & Route Handlers
 - CRUD Operation
 
 ## Technologies
