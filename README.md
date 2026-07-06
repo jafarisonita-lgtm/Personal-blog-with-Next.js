@@ -59,7 +59,7 @@ data/
 ## Screenshot
 
 ![Project Screenshot](./docs/blogs.png)
-
+ 
 
 ## Live Demo
 

@@ -1,7 +1,24 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Container from "./Container";
+import { useRouter } from "next/navigation";
 
 function HeroSection() {
+  const router = useRouter();
+
+  const [search, setSearch] = useState("");
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    // اگر چیزی وارد نشده باشد
+    if (!search.trim()) return;
+
+    // انتقال به صفحه blogs همراه با مقدار جستجو
+    router.push(`/blogs?search=${search.trim()}`);
+  };
+
   return (
     <section className="bg-slate-50 pt-20 pb-52">
       <Container>
@@ -18,7 +35,10 @@ function HeroSection() {
             The latest industry news, interviews, technologies, and resources.
           </p>
 
-          <div className="relative w-full max-w-md">
+          <form
+            onSubmit={submitHandler}
+            className="relative w-full max-w-md"
+          >
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -40,8 +60,10 @@ function HeroSection() {
               type="search"
               placeholder="Search articles..."
               className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 shadow-sm outline-none focus:ring-2 focus:ring-blue-500"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
-          </div>
+          </form>
         </div>
       </Container>
     </section>
