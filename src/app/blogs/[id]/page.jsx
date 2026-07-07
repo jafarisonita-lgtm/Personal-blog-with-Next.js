@@ -1,28 +1,21 @@
 import React from "react";
 import Image from "next/image";
 import Container from "@/app/components/Container";
-
-async function getPost(id) {
-  const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    throw new Error("Post not found");
-  }
-
-  return res.json();
-}
+import { posts } from "@/data/posts";
+import { notFound } from "next/navigation";
 
 async function PostDetail({ params }) {
   const { id } = await params;
-    
-  const post = await getPost(id);
+
+  const post = posts.find((post) => post.id === Number(id));
+
+  if (!post) {
+    notFound();
+  }
 
   return (
     <Container>
       <article className="max-w-4xl mx-auto my-10 rounded-lg bg-white p-8 shadow">
-
         <Image
           src={post.image}
           alt={post.title}
@@ -62,10 +55,9 @@ async function PostDetail({ params }) {
             </p>
           </div>
         </div>
-
       </article>
     </Container>
   );
 }
 
-export default PostDetail;
+export default PostDetail;لهف

@@ -3,10 +3,13 @@ import Container from "../components/Container";
 import ArticlePost from "../components/ArticlePost";
 import Link from "next/link";
 
-export async function getPosts() {
-  const res = await fetch("http://localhost:3000/api/posts", {
-    cache: "no-store",
-  });
+async function getPosts() {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`,
+    {
+      cache: "no-store",
+    }
+  );
 
   if (!res.ok) {
     throw new Error("Failed to fetch posts");
@@ -16,14 +19,11 @@ export async function getPosts() {
 }
 
 async function Blogs({ searchParams }) {
-  // گرفتن مقالات
   const posts = await getPosts();
 
-  
   const params = await searchParams;
   const search = (params?.search || "").toLowerCase().trim();
 
-  // اگر سرچ خالی باشد همه مقالات را نمایش بده
   const filteredPosts =
     search === ""
       ? posts
@@ -69,21 +69,6 @@ async function Blogs({ searchParams }) {
               href="/"
               className="flex items-center gap-1 rounded bg-slate-50 px-4 py-3 text-sm font-semibold"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="h-5 w-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3"
-                />
-              </svg>
-
               Load More
             </Link>
           </div>

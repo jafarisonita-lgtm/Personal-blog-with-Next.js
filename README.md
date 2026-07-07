@@ -30,7 +30,7 @@ Created to practice frontend development and showcase my skills.
 Clone the repository
 
 ```bash
-git clone YOUR_REPOSITORY_LINK
+git clone https://github.com/jafarisonita-lgtm/Personal-blog-with-Next.js.git
 
 npm install
 
