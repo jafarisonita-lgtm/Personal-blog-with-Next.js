@@ -1,13 +1,29 @@
 import React from "react";
 import Image from "next/image";
 import Container from "@/app/components/Container";
-import { posts } from "@/data/posts";
 import { notFound } from "next/navigation";
+import { getBaseUrl } from "@/lib/getBaseUrl";
+
+async function getPost(id) {
+  const res = await fetch(`${getBaseUrl()}/api/posts/${id}`, {
+    cache: "no-store",
+  });
+
+  if (res.status === 404) {
+    return null;
+  }
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch post");
+  }
+
+  return res.json();
+}
 
 async function PostDetail({ params }) {
   const { id } = await params;
 
-  const post = posts.find((post) => post.id === Number(id));
+  const post = await getPost(id);
 
   if (!post) {
     notFound();
@@ -25,7 +41,7 @@ async function PostDetail({ params }) {
         />
 
         <span className="text-sm font-semibold text-color">
-          {post.job}
+          {post.category}
         </span>
 
         <h1 className="text-4xl font-bold mt-3 mb-6">
