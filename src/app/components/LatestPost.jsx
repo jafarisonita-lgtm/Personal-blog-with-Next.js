@@ -2,14 +2,12 @@ import React from "react";
 import Container from "./Container";
 import ArticlePost from "./ArticlePost";
 import Link from "next/link";
+import { getBaseUrl } from "@/lib/getBaseUrl";
 
 async function getPosts() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`,
-    {
-      cache: "no-store",
-    }
-  );
+  const res = await fetch(`${getBaseUrl()}/api/posts`, {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch posts");

@@ -48,7 +48,7 @@ function NewArticle() {
       const result = await res.json();
 
       if (!res.ok) {
-        alert(result.message);
+        alert(result.message || "Failed to create article");
         return;
       }
 
@@ -61,9 +61,13 @@ function NewArticle() {
         description: "",
       });
 
+      // ابتدا کش صفحه را رفرش کن
+      router.refresh();
+
+      // سپس به صفحه بلاگ برو
       router.push("/blogs");
     } catch (error) {
-      console.log(error);
+      console.error(error);
       alert("Something went wrong!");
     }
   };
@@ -77,7 +81,6 @@ function NewArticle() {
           </h1>
 
           <form onSubmit={submitHandler} className="space-y-6">
-            {/* Title */}
             <div className="flex flex-col">
               <label className="mb-2 font-medium">Title</label>
 
@@ -91,7 +94,6 @@ function NewArticle() {
               />
             </div>
 
-            {/* Category */}
             <div className="flex flex-col">
               <label className="mb-2 font-medium">Category</label>
 
@@ -105,7 +107,6 @@ function NewArticle() {
               />
             </div>
 
-            {/* Image */}
             <div className="flex flex-col">
               <label className="mb-2 font-medium">Image URL</label>
 
@@ -119,7 +120,6 @@ function NewArticle() {
               />
             </div>
 
-            {/* Description */}
             <div className="flex flex-col">
               <label className="mb-2 font-medium">Description</label>
 
@@ -133,7 +133,6 @@ function NewArticle() {
               />
             </div>
 
-            {/* Button */}
             <button
               type="submit"
               className="button-create w-full rounded-md py-3 text-white font-semibold transition hover:opacity-90"
