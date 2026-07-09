@@ -62,11 +62,17 @@ data/
  
 
 ## Live Demo
-
-https://landing-page-with-nextjs-two.vercel.app/
+https://personal-blog-with-next-js.vercel.app/
 
 ## Author
 
 GitHub:
 https://github.com/jafarisonita-lgtm
+
+
+## Notes
+
+- This project uses an in-memory data source (`posts.js`) instead of a database.
+- Creating a new article works only during the current server session and is not persisted after redeployment or server restart.
+- In future versions, this project will be upgraded to use a real database (MongoDB or json-server) for persistent storage.
 
