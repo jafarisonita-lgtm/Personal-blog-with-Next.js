@@ -2,32 +2,9 @@ import React from "react";
 import Container from "./Container";
 import ArticlePost from "./ArticlePost";
 import Link from "next/link";
-import { getBaseUrl } from "@/lib/getBaseUrl";
+import { posts } from "@/data/posts";
 
-async function getPosts() {
-  const url = `${getBaseUrl()}/api/posts`;
-
-  console.log("URL:", url);
-
-  const res = await fetch(url, {
-    cache: "no-store",
-  });
-
-  console.log("STATUS:", res.status);
-  console.log("FINAL URL:", res.url);
-  console.log("CONTENT-TYPE:", res.headers.get("content-type"));
-
-  const text = await res.text();
-
-  console.log("RESPONSE:");
-  console.log(text.substring(0, 300));
-
-  return JSON.parse(text);
-}
-
-async function LatestPost() {
-  const posts = await getPosts();
-
+function LatestPost() {
   return (
     <section className="-mt-32 relative z-10 pb-10">
       <Container>

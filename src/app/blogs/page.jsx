@@ -2,23 +2,9 @@ import React from "react";
 import Container from "../components/Container";
 import ArticlePost from "../components/ArticlePost";
 import Link from "next/link";
-import { getBaseUrl } from "@/lib/getBaseUrl";
-
-async function getPosts() {
-  const res = await fetch(`${getBaseUrl()}/api/posts`, {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch posts");
-  }
-
-  return res.json();
-}
+import { posts } from "@/data/posts";
 
 async function Blogs({ searchParams }) {
-  const posts = await getPosts();
-
   const params = await searchParams;
   const search = (params?.search || "").toLowerCase().trim();
 

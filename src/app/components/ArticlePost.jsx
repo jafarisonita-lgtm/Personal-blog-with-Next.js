@@ -1,16 +1,12 @@
 import React from "react";
 import Image from "next/image";
 
-
-async function ArticlePost({post}) {
-
-console.log(post);
-
+function ArticlePost({ post }) {
   return (
     <article className="bg-white shadow-md border border-gray-100 rounded-lg overflow-hidden">
       <Image
         src={post.image}
-        alt="post image"
+        alt={post.title}
         className="w-full h-60 object-cover"
         width={300}
         height={200}
@@ -19,12 +15,11 @@ console.log(post);
       <div className="p-5">
         <span className="text-sm text-color">
           {post.category}
-          
         </span>
 
         <h2 className="font-bold text-xl flex justify-between mt-3 mb-4">
-         {post.title}
-              
+          {post.title}
+
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -43,20 +38,25 @@ console.log(post);
 
         <p className="text-slate-600 text-sm mb-6">
           {post.description}
-         
         </p>
 
         <div className="flex items-center">
-          <div className="w-10 h-10 rounded-full  flex items-center justify-center text-white mr-3">
-            <Image src={post.author.img} alt="avator" width={100} height={100}/>
+          <div className="w-10 h-10 rounded-full flex items-center justify-center text-white mr-3">
+            <Image
+              src={post.author.img}
+              alt={post.author.username}
+              width={40}
+              height={40}
+              className="rounded-full"
+            />
           </div>
 
           <div className="text-xs">
             <p className="font-medium">
-             {post.author.username}
+              {post.author.username}
             </p>
 
-            <p className=" text-slate-700">
+            <p className="text-slate-700">
               {post.author.date}
             </p>
           </div>

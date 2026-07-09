@@ -1,29 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import Container from "@/app/components/Container";
+import { posts } from "@/data/posts";
 import { notFound } from "next/navigation";
-import { getBaseUrl } from "@/lib/getBaseUrl";
-
-async function getPost(id) {
-  const res = await fetch(`${getBaseUrl()}/api/posts/${id}`, {
-    cache: "no-store",
-  });
-
-  if (res.status === 404) {
-    return null;
-  }
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch post");
-  }
-
-  return res.json();
-}
 
 async function PostDetail({ params }) {
   const { id } = await params;
 
-  const post = await getPost(id);
+  const post = posts.find((item) => item.id === Number(id));
 
   if (!post) {
     notFound();
