@@ -5,15 +5,24 @@ import Link from "next/link";
 import { getBaseUrl } from "@/lib/getBaseUrl";
 
 async function getPosts() {
-  const res = await fetch(`${getBaseUrl()}/api/posts`, {
+  const url = `${getBaseUrl()}/api/posts`;
+
+  console.log("URL:", url);
+
+  const res = await fetch(url, {
     cache: "no-store",
   });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch posts");
-  }
+  console.log("STATUS:", res.status);
+  console.log("FINAL URL:", res.url);
+  console.log("CONTENT-TYPE:", res.headers.get("content-type"));
 
-  return res.json();
+  const text = await res.text();
+
+  console.log("RESPONSE:");
+  console.log(text.substring(0, 300));
+
+  return JSON.parse(text);
 }
 
 async function LatestPost() {

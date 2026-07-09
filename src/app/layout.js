@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en">
-      <body  className={`{roboto.className} min-h-full flex flex-col`}>
+      <body  className={`${roboto.className} min-h-full flex flex-col`}>
         <Navbar/>
         {children}
         <Footer />
